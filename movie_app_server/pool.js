@@ -1,5 +1,6 @@
 // const express=require('express');
 const mysql=require('mysql');
+const nodemailer=require('nodemailer')
 const Email={
     config:{
         host: "smtp.163.com",
@@ -13,7 +14,7 @@ const Email={
         return nodemailer.createTransport(this.config);
     },
     get verify(){
-        return Math.random().toString(2,6)
+        return Math.random().toString().substring(2,6)
     }
 }    
 
