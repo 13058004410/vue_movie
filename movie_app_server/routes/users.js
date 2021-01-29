@@ -5,11 +5,11 @@ var usersController=require('../controllers/users.js')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  pool.query('select*from zongbuxinwen',function(err,result){
-    res.send(result)
-    console.log(result)
-	})
-  // res.send('respond with a resource');
+  // pool.query('select*from zongbuxinwen',function(err,result){
+  //   res.send(result)
+  //   console.log(result)
+	// })
+  res.send('respond with a resource');
 });
 
 //登陆路由
