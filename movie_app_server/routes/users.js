@@ -5,6 +5,13 @@ const { pool } = require('../pool.js');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
+<<<<<<< HEAD
+=======
+  // pool.query('select*from zongbuxinwen',function(err,result){
+  //   res.send(result)
+  //   console.log(result)
+	// })
+>>>>>>> dev
   res.send('respond with a resource');
 });
 
