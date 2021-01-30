@@ -4,17 +4,10 @@ const nodemailer=require('nodemailer')
 const Email={
     config:{
         host: "smtp.163.com",
-<<<<<<< HEAD
         port: 25,
         auth: {
             user: '13058004410@163.com', // generated ethereal user
             pass: 'HJIQDPDPPUVFDLKF', // generated ethereal password
-=======
-        port: 25,  //163邮箱的SMTP端口就是25
-        auth: {
-            user: '13058004410@163.com', // generated ethereal user  发件人邮箱
-            pass: 'HJIQDPDPPUVFDLKF', // generated ethereal password  邮箱授权码
->>>>>>> dev
         }
     },
     get transporter(){
