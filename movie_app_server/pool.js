@@ -4,10 +4,10 @@ const nodemailer=require('nodemailer')
 const Email={
     config:{
         host: "smtp.163.com",
-        port: 587,
+        port: 25,
         auth: {
             user: '13058004410@163.com', // generated ethereal user
-            pass: '_Yu123123', // generated ethereal password
+            pass: 'HJIQDPDPPUVFDLKF', // generated ethereal password
         }
     },
     get transporter(){
@@ -23,7 +23,7 @@ const pool=mysql.createPool({
     password:'root',
     host:'127.0.0.1',
     port:'3306',
-    database:'zhejiangwanfeng',
+    database:'shenye',
     connectionLimit:20
 });
 
