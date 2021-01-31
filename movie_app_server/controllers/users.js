@@ -1,8 +1,36 @@
 var {Email, pool}=require('../pool.js')
 // var UserModel=require('../models/users.js')
 var login = async(req,res,next)=>{
-
+    // var username=req.body.username
+    // res.send({
+    //     msg:'成功',
+    //     status:0,
+    //     username
+    // })
+    var {username,password}=req.body;
+    console.log(username,password)
+    var sql=`select*from users where username=? and password=?`;
+    pool.query(sql,[username,password],function(err,result){
+        if(err)throw err;
+        console.log(result)
+        if(result.length!=0){
+            req.session.username=username;
+            req.session.password=password;
+            res.send({
+                msg:'登陆成功',
+                status:0
+            })
+            console.log('登陆成功')
+        }else{
+            res.send({
+                msg:'登陆失败',
+                status:-1
+            })
+            console.log('登陆失败')
+        }
+    })
 }
+
 var register = async(req,res,next)=>{
     var {username,password,email,verify}=req.body;
     if(email!==req.session.email||verify!==req.session.verify){
@@ -15,6 +43,7 @@ var register = async(req,res,next)=>{
     var sql=`insert into users values(null,'${username}','${password}','${email}')`
     pool.query(sql,function(err,result){
         if(err)throw err;
+        
         if(result.affectedRows>0){
             res.send({code:1,msg:'添加数据成功'})
             console.log('添加数据成功')
@@ -58,10 +87,27 @@ var verify = async(req,res,next)=>{
 
 }
 var logout = async(req,res,next)=>{
-
+    req.session.username='';
+    res.send({
+        msg:'退出成功',
+        status:0
+    })
 }
 var getUser = async(req,res,next)=>{
-
+    if(req.session.username){
+        res.send({
+            mgs:'获取用户信息成功',
+            status:0,
+            data:{
+                username:req.session.username
+            }
+        })
+    }else{
+        res.send({
+            mgs:'获取用户信息失败',
+            status:-1
+        })
+    }
 }
 var findPassword = async(req,res,next)=>{
 
