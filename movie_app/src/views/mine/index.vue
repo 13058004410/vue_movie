@@ -1,7 +1,9 @@
 <template>
     <div id="main">
-        <top title="我是个人中心"/>
-        <login/>
+        <top title="我的"/>
+        <div id="contetn">
+            <router-view/>
+        </div>
         <tabbar/>
     </div>
 </template>

@@ -31,6 +31,7 @@ var login = async(req,res,next)=>{
     })
 }
 
+//注册接口
 var register = async(req,res,next)=>{
     var {username,password,email,verify}=req.body;
     if(email!==req.session.email||verify!==req.session.verify){
@@ -55,6 +56,8 @@ var register = async(req,res,next)=>{
         }
     })
 }
+
+//验证码接口
 var verify = async(req,res,next)=>{
     // res.send({
     //     msg:'成功',
@@ -86,6 +89,8 @@ var verify = async(req,res,next)=>{
     })
 
 }
+
+//退出登录接口
 var logout = async(req,res,next)=>{
     req.session.username='';
     res.send({
@@ -93,6 +98,8 @@ var logout = async(req,res,next)=>{
         status:0
     })
 }
+
+//登录态接口
 var getUser = async(req,res,next)=>{
     if(req.session.username){
         res.send({
@@ -109,6 +116,8 @@ var getUser = async(req,res,next)=>{
         })
     }
 }
+
+//找回密码接口
 var findPassword = async(req,res,next)=>{
 
 }
