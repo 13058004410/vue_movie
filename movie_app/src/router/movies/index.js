@@ -5,6 +5,14 @@ export default{
         {
             path:'movieList',
             component:()=>import('@/components/movieList')
+        },
+        {
+            path:'city',
+            component:()=>import('@/components/cityList')
+        },
+        {
+            path:'/movies',
+            redirect:'/movies/city'
         }
     ]
 }

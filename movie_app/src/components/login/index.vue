@@ -58,8 +58,8 @@ export default {
 }
 </script>
 
-<style>
-.login p{text-align: center;}
-.login p:nth-child(4){display:flex;justify-content: space-between;font-size:18px}
-.login p input{line-height:60px;width:100%;text-align: center;font-size:35px}
+<style scoped>
+    .login p{text-align: center;}
+    .login p:nth-child(4){display:flex;justify-content: space-between;font-size:18px}
+    .login p input{line-height:60px;width:100%;text-align: center;font-size:35px}
 </style>
