@@ -17,5 +17,5 @@ export default {
 </script>
 
 <style>
-    #header{width:100%;height:80px;background:red;text-align: center;line-height: 80px;position:fixed}
+    #header{width:100%;height:80px;background:red;text-align: center;line-height: 80px;position:relative}
 </style>

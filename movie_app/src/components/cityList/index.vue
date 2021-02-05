@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style scoped>
-    .city_body{margin-top:27%}
+    .city_body{overflow: auto;height:100%}
     .citi_list h2{background:#ccc}
     .citi_list ul{background:rgb(238, 101, 153)}
     .citi_list ul li{line-height:28px}

@@ -11,6 +11,10 @@ export default{
             component:()=>import('@/components/cityList')
         },
         {
+            path:'search',
+            component:()=>import('@/components/search')
+        },
+        {
             path:'/movies',
             redirect:'/movies/city'
         }

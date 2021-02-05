@@ -1,5 +1,5 @@
 <template>
-    <div class="list">
+    <div class="list" ref="list">
         <ul>
             <li v-for='item in movies' :key='item.id'>
                 <div class="img">
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+    import Bscroll from 'better-scroll'
     export default {
         name:'movieList',
         data(){
@@ -34,6 +35,10 @@
                     var movies=res.data.result
                     console.log(movies)
                     this.movies=movies
+                    this.$nextTick(()=>{
+                        new Bscroll(this.$refs.list,{})
+                    })
+                    
                 }
                 
             })
@@ -48,6 +53,7 @@
 </script>
 
 <style scoped>
+    .list{overflow:auto;width:100%;height:100%}
     .list ul{padding:0 5px}
     .list ul li{display:flex;justify-content: space-between;padding:5px 0;border-bottom: 1px solid #ccc;}
     .list ul li .img{width:20%}
