@@ -1,6 +1,8 @@
 var {Email, pool}=require('../pool.js')
 // var UserModel=require('../models/users.js')
-var login = async(req,res,next)=>{
+
+//登陆接口
+var login = async(req,res,next)=>{   
     // var username=req.body.username
     // res.send({
     //     msg:'成功',
@@ -9,7 +11,7 @@ var login = async(req,res,next)=>{
     //     // username
     // })
     var {username,password}=req.body;
-    console.log(req.body)
+    // console.log(req.body)
     var sql=`select*from users where username=? and password=?`;
     pool.query(sql,[username,password],function(err,result){
         if(err)throw err;
@@ -64,6 +66,7 @@ var verify = async(req,res,next)=>{
         msg:'成功',
         status:0
     })
+    console.log(123)
     // var email=req.query.email;
     // var verify=Email.verify;
     // console.log(verify)

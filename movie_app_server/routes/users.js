@@ -18,7 +18,7 @@ router.get('/', function(req, res, next) {
 
 
 
-router.get('/login',usersController.login)
+router.post('/login',usersController.login)
 router.post('/register',usersController.register)
 router.get('/verify',usersController.verify)
 router.get('/logout',usersController.logout)
