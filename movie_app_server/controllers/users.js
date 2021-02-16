@@ -4,15 +4,16 @@ var login = async(req,res,next)=>{
     // var username=req.body.username
     // res.send({
     //     msg:'成功',
-    //     status:0,
-    //     username
+    //     status:0
+    //     // ,
+    //     // username
     // })
     var {username,password}=req.body;
-    console.log(username,password)
+    console.log(req.body)
     var sql=`select*from users where username=? and password=?`;
     pool.query(sql,[username,password],function(err,result){
         if(err)throw err;
-        console.log(result)
+        // console.log(result)
         if(result.length!=0){
             req.session.username=username;
             req.session.password=password;
@@ -59,34 +60,34 @@ var register = async(req,res,next)=>{
 
 //验证码接口
 var verify = async(req,res,next)=>{
-    // res.send({
-    //     msg:'成功',
-    //     status:0
-    // })
-    var email=req.query.email;
-    var verify=Email.verify;
-    console.log(verify)
-    req.session.email=email;
-    req.session.verify=verify;
-    var mailOptions={
-        from: '深夜影院 13058004410@163.com', // sender address
-        to: email, // list of receivers
-        subject: "深夜影院邮箱验证码", // Subject line
-        text: "验证码："+verify, // plain text body
-    }
-    Email.transporter.sendMail(mailOptions,(err)=>{
-        if(err){
-            res.send({
-                msg:'验证码发送失败',
-                status:-1
-            })
-        }else{
-            res.send({
-                msg:'验证码发送成功',
-                status:0
-            })
-        }
+    res.send({
+        msg:'成功',
+        status:0
     })
+    // var email=req.query.email;
+    // var verify=Email.verify;
+    // console.log(verify)
+    // req.session.email=email;
+    // req.session.verify=verify;
+    // var mailOptions={
+    //     from: '深夜影院 13058004410@163.com', // sender address
+    //     to: email, // list of receivers
+    //     subject: "深夜影院邮箱验证码", // Subject line
+    //     text: "验证码："+verify, // plain text body
+    // }
+    // Email.transporter.sendMail(mailOptions,(err)=>{
+    //     if(err){
+    //         res.send({
+    //             msg:'验证码发送失败',
+    //             status:-1
+    //         })
+    //     }else{
+    //         res.send({
+    //             msg:'验证码发送成功',
+    //             status:0
+    //         })
+    //     }
+    // })
 
 }
 
