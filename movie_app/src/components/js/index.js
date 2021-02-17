@@ -3,17 +3,19 @@ import MessageBox from './messageBox';
 
 export var messageBox=(function(){
     
-    
+    var MyComponent=Vue.extend(MessageBox);
+
     return function(opts){  //配置参数
         var defaults={  //默认值
             title:'',
             content:'',
             cancel:'',
             ok:'',
-            handleCancel:null,
-            handleOk:null
+            handleOk:null,
+            handleCancel:null
+            
         };
-        var MyComponent=Vue.extend(MessageBox);
+        
         for(var attr in opts){
             defaults[attr]=opts[attr];
         }
@@ -27,11 +29,12 @@ export var messageBox=(function(){
             },
             methods:{
                 handleCancel(){
-                    defaults.handleCancel && defaults.handleCancel.bind(this);
+                    defaults.handleCancel && defaults.handleCancel.call(this);
                     document.body.removeChild(vm.$el);
-                },
+                }
+                ,
                 handleOk(){
-                    defaults.handleOk && defaults.handleOk.bind(this);
+                    defaults.handleOk && defaults.handleOk.call(this);
                     document.body.removeChild(vm.$el);
                 }
             }
