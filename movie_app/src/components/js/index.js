@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import messageBox from './messageBox';
+import MessageBox from './messageBox';
 
 export var messageBox=(function(){
     
@@ -13,7 +13,7 @@ export var messageBox=(function(){
             handleCancel:null,
             handleOk:null
         };
-        var MyComponent=Vue.extend(messageBox);
+        var MyComponent=Vue.extend(MessageBox);
         for(var attr in opts){
             defaults[attr]=opts[attr];
         }
@@ -27,10 +27,15 @@ export var messageBox=(function(){
             },
             methods:{
                 handleCancel(){
-                    defaults.handleCancel&&defaults.handleCancel.call(this);
+                    defaults.handleCancel && defaults.handleCancel.bind(this);
+                    document.body.removeChild(vm.$el);
+                },
+                handleOk(){
+                    defaults.handleOk && defaults.handleOk.bind(this);
                     document.body.removeChild(vm.$el);
                 }
             }
         })
+        document.body.appendChild(vm.$el)
     }
-})
+})()

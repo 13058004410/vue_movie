@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import messageBox from '@/components/js/messageBox'
+import {messageBox} from '@/components/js'
 export default {
     name:'login',
     data(){
@@ -28,19 +28,22 @@ export default {
     },
     methods:{
         handleToLogin(){
+            
             this.axios.post('/api2/users/login',{
                 username:this.username,
                 password:this.password
             }).then((res)=>{
                 console.log(res)
                 var status=res.data.status;
-                var This=this;
-                if(status===0){
+                var This=this;               
+                if(status==0){
+                    
                     messageBox({
                         title:'登录',
                         content:'登录成功',
                         ok:'确定',
                         handleOk(){
+                            console.log(1315)
                             This.$router.push('/mine/center')
                         }
 

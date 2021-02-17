@@ -17,10 +17,11 @@ export default{
         {
             path:'findPassword',
             component:()=>import('@/components/findPassword')
-        },
+        }
+        ,
         {
             path:'/mine',
-            redirect:'center'
+            redirect:'login'
         }
     ]
 }
