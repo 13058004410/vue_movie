@@ -21,7 +21,7 @@ export default{
         ,
         {
             path:'/mine',
-            redirect:'login'
+            redirect:'center'
         }
     ]
 }
