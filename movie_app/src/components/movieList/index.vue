@@ -1,44 +1,76 @@
 <template>
+    
     <div class="list" ref="list">
-        <ul>
-            <li v-for='item in movies' :key='item.id'>
-                <div class="img">
-                    <img :src="item.poster|setWH(128*180)" alt="">
-                </div>
-                <div class="intro">
-                    <h4>{{item.title}}</h4>
-                    <p>主演：{{item.actors}}</p>
-                    <p>评分：{{item.rating}}</p>
-                    <p>上映日期：{{item.release_date}}</p>
-                </div>
-                <div class="btn">
-                    <button>观看</button>
-                </div>
-            </li>
-        </ul>
+        <Loading v-if="isLoading"/>
+        <Scroller v-else :handleToScroll="handleToScroll" :handleToTouchEnd="handleToTouchEnd">
+            <ul>
+                <li>{{pullDownMsg}}</li>
+                <li v-for='item in movies' :key='item.id'>
+                    <div class="img" @tap='handleToDetail'>
+                        <img :src="item.poster|setWH(128*180)" alt="">
+                    </div>
+                    <div class="intro">
+                        <h4>{{item.title}}</h4>
+                        <p>主演：{{item.actors}}</p>
+                        <p>评分：{{item.rating}}</p>
+                        <p>上映日期：{{item.release_date}}</p>
+                    </div>
+                    <div class="btn">
+                        <button>观看</button>
+                    </div>
+                </li>
+            </ul>
+        </Scroller>
     </div>
 </template>
 
 <script>
-    import Bscroll from 'better-scroll'
+    // import Bscroll from 'better-scroll'
     export default {
         name:'movieList',
         data(){
             return {
-                movies:[]
+                movies:[],
+                pullDownMsg:'',
+                isLoading:true
             }
         },
         mounted(){
             this.axios.get('/static/dianying.json').then((res)=>{
                 var reason=res.data.reason;
                 if(reason==='成功的返回'){
+                    this.isLoading=false;
                     var movies=res.data.result
                     console.log(movies)
                     this.movies=movies
-                    this.$nextTick(()=>{
-                        new Bscroll(this.$refs.list,{})
-                    })
-                    
+                    // this.$nextTick(()=>{
+                    //     var scroll=new Bscroll(this.$refs.list,{
+                    //         tap:true,
+                    //         probeType:1
+                    //     })
+                    //     scroll.on('scroll',(pos)=>{
+                    //         // console.log('scroll')
+                    //         if(pos.y>30){
+                    //             this.pullDownMsg='正在更新中'
+                    //         }
+                            
+                    //     })
+                    //     scroll.on('touchEnd',(pos)=>{
+                    //         // console.log('touchend')
+                    //         if(pos.y>30){
+                    //             this.axios.get('/static/dianying.json').then((res)=>{
+                    //                 var reason=res.data.reason;
+                    //                 if(reason==='成功的返回'){
+                    //                     this.pullDownMsg='更新成功'
+                    //                     setTimeout(()=>{
+                    //                         this.movies=res.data.result  
+                    //                         this.pullDownMsg=''
+                    //                     },1000)
+                    //                 }
+                    //             })
+                    //         }
+                    //     })
+                    // })
                 }
                 
             })
@@ -48,6 +80,28 @@
             // formatMovieList(movies){
             //     var _movieList=[]
             // }
+            handleToDetail(){
+                console.log('触发tap事件')
+            },
+            handleToScroll(pos){
+                if(pos.y>30){
+                    this.pullDownMsg='正在更新中'
+                }
+            },
+            handleToTouchEnd(pos){
+               if(pos.y>30){
+                    this.axios.get('/static/dianying.json').then((res)=>{
+                        var reason=res.data.reason;
+                        if(reason==='成功的返回'){
+                            this.pullDownMsg='更新成功'
+                            setTimeout(()=>{
+                                this.movies=res.data.result  
+                                this.pullDownMsg=''
+                            },1000)
+                        }
+                    })
+                } 
+            }
         }
     }
 </script>

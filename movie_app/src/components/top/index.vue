@@ -7,7 +7,7 @@
 <script>
 export default {
     name:'top', 
-    props:{
+    props:{                 //我是子组件
         title:{
             type:String,
             default:'头部'
@@ -17,5 +17,5 @@ export default {
 </script>
 
 <style>
-    #header{width:100%;height:80px;background:red;text-align: center;line-height: 80px;position:relative}
+    #header{width:100%;height:80px;background:red;text-align: center;line-height: 80px;position:fixed;top:0;z-index: 1;}
 </style>

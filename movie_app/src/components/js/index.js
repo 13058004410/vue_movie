@@ -12,13 +12,13 @@ export var messageBox=(function(){
             cancel:'',
             ok:'',
             handleOk:null,
-            handleCancel:null
-            
+            handleCancel:null           
         };
         
         for(var attr in opts){
             defaults[attr]=opts[attr];
         }
+        
         var vm=new MyComponent({
             el:document.createElement('div'),
             data:{
@@ -41,4 +41,5 @@ export var messageBox=(function(){
         })
         document.body.appendChild(vm.$el)
     }
+
 })()

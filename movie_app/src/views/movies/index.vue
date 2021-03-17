@@ -56,9 +56,9 @@ export default {
 </script>
 
 <style scoped>
-    #content{width:100%;height:100%}
-    #content .movie_menu{width:100%;display:flex;justify-content:space-between;position:relative;background:rgb(255, 255, 255);padding:10px 10px}
-    #content .movie_menu .nav_name{max-width:20%}
+    #content{width:100%;height:100%;position:absolute;top:80px;padding-top:40px}
+    #content .movie_menu{width:100%;display:flex;justify-content:space-between;position:fixed;top:80px;background:rgb(255, 255, 255);padding:10px 10px}
+    #content .movie_menu .nav_name{max-width:30%}
     #content .movie_menu .nav_name span{font-size:18px;}
     #content .movie_menu .nav_name .search_btn{display:block;width:28%;float:right}
     #content .movie_menu .nav_name.router-link-active{color:red;}

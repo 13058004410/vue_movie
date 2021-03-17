@@ -1,12 +1,19 @@
 <template>
-    <div class="city_body">
-        <div class="citi_list" v-for='(value,key,index) in cities' :key='index'>
-            <h2>{{key}}</h2>
-            <ul>
-                <li v-for='(value,key,index) in value' :key='index'>{{value.nm}}</li>
-            </ul>
+    
+        <div class="city_body">
+            <Loading v-if="isLoading"/>
+            <scroller v-else ref="city_List">
+                <div>
+                    <div class="citi_list" v-for='(value,key,index) in cities' :key='index'>
+                        <h2>{{key}}</h2>
+                        <ul>
+                            <li v-for='(value,key,index) in value' :key='index'>{{value.nm}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </scroller> 
         </div>
-    </div>
+   
 </template>
 
 <script>
@@ -14,7 +21,8 @@ export default {
     name:'city',
     data(){
         return{
-            cities:[]
+            cities:[],
+            isLoading:true
         }
     },
     mounted(){
@@ -22,12 +30,22 @@ export default {
             // console.log(res)
             var msg=res.data.msg;
             if(msg==='ok'){
+                this.isLoading=false;
                 var cities=res.data.letterMap;
                 console.log(typeof(cities))
                 this.cities=cities;
             }
         })
 
+    },
+    methods:{
+        formatCityList(city){
+            
+        },
+        handleToIndex(index){
+            var h2=this.$refs.city_sort.getElementsByTagName('h2')
+            this.$refs.city_List.toScrollTop(-h2[index].offsetTop)
+        }
     }
 
 }

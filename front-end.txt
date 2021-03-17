@@ -1,0 +1,1 @@
+1. 使用better-scroll这个组件，如果需要切换设备才能滚动列表，那就在该组件里边的代码把mounted改成updated

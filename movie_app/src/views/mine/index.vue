@@ -1,7 +1,7 @@
 <template>
     <div id="main">
         <top title="我的"/>
-        <div id="contetn">
+        <div id="content">
             <router-view></router-view>
             <!-- <login/> -->
         </div>
@@ -24,6 +24,6 @@
 </script>
 
 <style>
-
+    #content{padding-top:80px}
 
 </style>

@@ -49,7 +49,7 @@ export default {
             var that=this
             this.cancelRequest()
             // console.log(newVal)
-            this.axios.get('https://m.maoyan.com/ajax/search?kw='+newVal+'&cityId=1',{
+            this.axios.get('/api/ajax/search?kw='+newVal+'&cityId=1',{
                 cancelToken:new this.axios.CancelToken(function(c){
                     that.source=c
                 })

@@ -20,7 +20,7 @@ const Email={
 
 const pool=mysql.createPool({
     user:'root',
-    password:'123456',
+    password:'root',
     host:'127.0.0.1',
     port:'3306',
     database:'shenye',

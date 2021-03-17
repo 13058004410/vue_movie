@@ -10,14 +10,15 @@
             <input @touchstart="handleToLogin" type="submit" value="登陆">
         </p>
         <p>
-            <a href="">立即注册</a>
-            <a href="">找回密码</a>
+            <router-link to="/mine/register">立即注册</router-link>
+            <router-link to="/mine/findPassword">找回密码</router-link>
         </p>
     </div>
 </template>
 
 <script>
-import {messageBox} from '@/components/js'
+
+import {messageBox} from '@/components/js'   //如果那个文件里边的内容是用export导出的，在别的文件引入它的时候就要用到花括号
 export default {
     name:'login',
     data(){
@@ -27,15 +28,14 @@ export default {
         }
     },
     methods:{
-        handleToLogin(){
-            
+        handleToLogin(){            
             this.axios.post('/api2/users/login',{
                 username:this.username,
                 password:this.password
             }).then((res)=>{
                 console.log(res)
                 var status=res.data.status;
-                var This=this;               
+                var This=this;                                //这个This指向那个js/index.js文件里边的vm对象
                 if(status==0){
                     
                     messageBox({
@@ -44,9 +44,8 @@ export default {
                         ok:'确定',
                         handleOk(){
                             console.log(1315)
-                            This.$router.push('/mine/center')
+                            This.$router.push('/mine/center')   //这个This指向那个js/index.js文件里边的vm对象
                         }
-
                     })
                 }else{
                     messageBox({
