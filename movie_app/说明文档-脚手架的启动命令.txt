@@ -1,0 +1,3 @@
+如果是初次使用该项目，请先运行 npm install 来安装依赖
+
+运行 npm run dev 来启动项目
